@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bounceTest : MonoBehaviour
+public class Person : MonoBehaviour
 {
      public float minY, maxY;
      public bool isMovingUp;
+     public float randNum;
 
     // Start is called before the first frame update
     void Start()
     {
+          randNum = Random.Range(0, 10);
           minY = transform.position.y;
           maxY = minY + 0.2f;
     }
@@ -17,7 +19,22 @@ public class bounceTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-          if(transform.position.y < minY)
+          if (randNum < 6)
+          {
+               if (randNum < 0)
+               {
+                    Jump();
+               }
+               else
+               {
+                    randNum -= Time.deltaTime;
+               }
+          }
+    }
+
+     void Jump()
+     {
+          if (transform.position.y < minY)
           {
                isMovingUp = true;
           }
@@ -34,5 +51,9 @@ public class bounceTest : MonoBehaviour
           {
                transform.position -= transform.up * Time.deltaTime;
           }
-    }
+     }
+
 }
+
+
+
