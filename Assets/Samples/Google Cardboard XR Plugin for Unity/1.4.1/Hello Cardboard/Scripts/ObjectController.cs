@@ -18,11 +18,15 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controls target objects behaviour.
 /// </summary>
 public class ObjectController : MonoBehaviour
+
+
 {
     /// <summary>
     /// The material to use when this object is inactive (not being gazed at).
@@ -85,7 +89,9 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerEnter()
     {
-        SetMaterial(true);
+          //
+          Debug.Log("Pointer Entered");
+          SetMaterial(true);
     }
 
     /// <summary>
@@ -102,8 +108,9 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void OnPointerClick()
     {
-        TeleportRandomly();
-    }
+          SceneManager.LoadScene("MainScene");
+          //TeleportRandomly();
+     }
 
     /// <summary>
     /// Sets this instance's material according to gazedAt status.

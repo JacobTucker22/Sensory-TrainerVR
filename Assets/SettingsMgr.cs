@@ -18,7 +18,7 @@ public class SettingsMgr : MonoBehaviour
      // Start is called before the first frame update
      void Start()
      {
-
+          startButton.onClick.AddListener(StartGame);
      }
 
      // Update is called once per frame
@@ -27,12 +27,12 @@ public class SettingsMgr : MonoBehaviour
 
      }
 
-     void OnPointerClick() {
+     public void OnPointerClick() {
           StartGame();
      }
 
 
-     void StartGame()
+     public void StartGame()
      {
           SceneManager.LoadScene("MainScene");
      }

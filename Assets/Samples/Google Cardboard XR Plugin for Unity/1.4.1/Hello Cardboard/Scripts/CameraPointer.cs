@@ -24,7 +24,7 @@ using UnityEngine;
 /// </summary>
 public class CameraPointer : MonoBehaviour
 {
-    private const float _maxDistance = 10;
+    private const float _maxDistance = Mathf.Infinity;
     private GameObject _gazedAtObject = null;
 
      public LayerMask clickables;
@@ -37,10 +37,12 @@ public class CameraPointer : MonoBehaviour
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance, clickables))
+          
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
         {
-            // GameObject detected in front of the camera.
-            if (_gazedAtObject != hit.transform.gameObject)
+               //Debug.Log("HIt");
+               // GameObject detected in front of the camera.
+               if (_gazedAtObject != hit.transform.gameObject)
             {
                 // New GameObject.
                 _gazedAtObject?.SendMessage("OnPointerExit");
@@ -50,6 +52,7 @@ public class CameraPointer : MonoBehaviour
         }
         else
         {
+               //Debug.Log("miss");
             // No GameObject detected in front of the camera.
             _gazedAtObject?.SendMessage("OnPointerExit");
             _gazedAtObject = null;
