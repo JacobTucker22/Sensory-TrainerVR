@@ -28,17 +28,19 @@ public class CameraPointer : MonoBehaviour
     private GameObject _gazedAtObject = null;
 
      public LayerMask clickables;
+     public GameObject yawNode, pitchNode;
 
-    /// <summary>
-    /// Update is called once per frame.
-    /// </summary>
-    public void Update()
+
+     /// <summary>
+     /// Update is called once per frame.
+     /// </summary>
+     public void Update()
     {
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
         RaycastHit hit;
           
-        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance, clickables))
         {
                //Debug.Log("HIt");
                // GameObject detected in front of the camera.
@@ -58,8 +60,37 @@ public class CameraPointer : MonoBehaviour
             _gazedAtObject = null;
         }
 
-        // Checks for screen touches.
-        if (Google.XR.Cardboard.Api.IsTriggerPressed)
+        //Click to simulate tapped screen
+        if(Input.GetMouseButtonDown(0))
+          {
+               _gazedAtObject?.SendMessage("OnPointerClick");
+          }
+
+          //editor arrow controls for testing
+          if (Input.GetKey(KeyCode.LeftArrow))
+          {
+               yawNode.transform.localEulerAngles -= Vector3.up * 30 * Time.deltaTime;
+          }
+
+          if (Input.GetKey(KeyCode.RightArrow))
+          {
+               
+               yawNode.transform.localEulerAngles += Vector3.up * 30 * Time.deltaTime;
+          }
+
+          if (Input.GetKey(KeyCode.UpArrow))
+          {
+               pitchNode.transform.localEulerAngles -= Vector3.right * 30 * Time.deltaTime;
+
+          }
+
+          if (Input.GetKey(KeyCode.DownArrow))
+          {
+               pitchNode.transform.localEulerAngles += Vector3.right * 30 * Time.deltaTime;
+          }
+
+          // Checks for screen touches.
+          if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
             _gazedAtObject?.SendMessage("OnPointerClick");
         }

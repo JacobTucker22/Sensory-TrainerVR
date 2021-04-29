@@ -8,7 +8,10 @@ using UnityEngine.EventSystems;
 public class SettingsMgr : MonoBehaviour
 {
      public static SettingsMgr inst;
-     public Button startButton;
+
+     public List<UIObjectController> settingObjects;
+
+     public string chosenScene = null;
 
      private void Awake()
      {
@@ -18,7 +21,7 @@ public class SettingsMgr : MonoBehaviour
      // Start is called before the first frame update
      void Start()
      {
-          startButton.onClick.AddListener(StartGame);
+
      }
 
      // Update is called once per frame
@@ -34,6 +37,11 @@ public class SettingsMgr : MonoBehaviour
 
      public void StartGame()
      {
-          SceneManager.LoadScene("MainScene");
+          if (chosenScene != null)
+          {
+               SceneManager.LoadScene(chosenScene);
+          }
      }
+
+
 }
