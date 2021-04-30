@@ -27,7 +27,7 @@ public class UIObjectController : MonoBehaviour
 
      private void Update()
      {
-          transform.Rotate(transform.forward, 0.3f);
+          transform.Rotate(transform.forward, 0.1f);
           if(isSelected)
           {
                _myRenderer.material = SelectedMaterial;
@@ -55,7 +55,13 @@ public class UIObjectController : MonoBehaviour
           }
           else if (tag == "QuitObject")
           {
-               Application.Quit();
+#if UNITY_EDITOR
+               // Application.Quit() does not work in the editor so
+               // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+               UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
           }
           else
           {
