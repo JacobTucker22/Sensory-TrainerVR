@@ -48,13 +48,18 @@ public class UIObjectController : MonoBehaviour
 
      public void OnPointerClick()
      {
-          if (tag != "StartObject")
+          if (tag == "StartObject")
           {
-               SettingsMgr.inst.chosenScene = myScene;
+               SceneManager.LoadScene(SettingsMgr.inst.chosenScene);
+               
+          }
+          else if (tag == "QuitObject")
+          {
+               Application.Quit();
           }
           else
           {
-               SceneManager.LoadScene(SettingsMgr.inst.chosenScene);
+               SettingsMgr.inst.chosenScene = myScene;
           }
 
  

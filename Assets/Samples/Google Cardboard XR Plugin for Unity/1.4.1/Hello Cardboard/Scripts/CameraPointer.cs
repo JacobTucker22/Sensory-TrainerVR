@@ -18,6 +18,7 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Sends messages to gazed GameObject.
@@ -63,6 +64,10 @@ public class CameraPointer : MonoBehaviour
         //Click to simulate tapped screen
         if(Input.GetMouseButtonDown(0))
           {
+               if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))
+               {
+                    SceneManager.LoadScene("MainMenu");
+               }
                _gazedAtObject?.SendMessage("OnPointerClick");
           }
 
@@ -92,6 +97,10 @@ public class CameraPointer : MonoBehaviour
           // Checks for screen touches.
           if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
+               if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("MainMenu"))
+               {
+                    SceneManager.LoadScene("MainMenu");
+               }
             _gazedAtObject?.SendMessage("OnPointerClick");
         }
     }
