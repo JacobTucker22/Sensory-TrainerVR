@@ -1,4 +1,5 @@
 # Sensory-TrainerVR
+
 CS484/684 Virtual Reality Final Project. Sensory training virtual experience for those with sensory issues
 Group 10: Cole Atkinson, Johanna Cohen, and Jacob Tucker
 Made with Unity 2019.4.20f1
