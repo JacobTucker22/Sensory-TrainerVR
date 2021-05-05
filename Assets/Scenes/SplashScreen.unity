@@ -190,7 +190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sensory Trainer VR
+  m_Text: Into The Senses
 --- !u!222 &70060399
 CanvasRenderer:
   m_ObjectHideFlags: 0
